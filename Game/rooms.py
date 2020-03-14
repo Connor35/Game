@@ -22,15 +22,27 @@ class Room(object):
                 print "There is a %s here." % item.name
         for i, exit in self.exits.iteritems():
             print "There is a %s to the %s." % (exit.name, exit.direction)
-        
+        #####
+        # function: describe_verbose
+        # author: Soren Andersen
+        # description: Checks to see if its the first time in the starting room, then displays instruction set to user
+        #
+        ####
     def describe_verbose(self):
         #prints the verbose room description
         print "\n%s" % self.verbose_description
+        if self.label == "tube_room":
+            if self.visits == 0:
+                print('')
+                print("Use the Cardinal directions to move, such as 'North' and 'West'. If you see an interactable item, pick it up with 'take' and use it with 'use'.")
+                print("Get stuck? See the instructions again with 'help' or 'instructions', Get too stuck? Quit with 'quit'")
+                print("This place doesn't seem too nice, you might want to get out of here...")
         self.extra_description()
             
     def describe_terse(self):
         #prints the terse room description
         print "\n%s" % self.terse_description
+
         self.extra_description()
         
     def describe(self):

@@ -22,7 +22,7 @@ class Engine(object):
             "pick":"take",
             "drop":"drop",
         })
-        self.menu_keywords = ["quit", "help", "i", "inv"]
+        self.menu_keywords = ["quit", "help", "i", "inv", "help", "instructions"]
         self.look_keywords = ["look", "search", "read"]
         
     def move_into(self, room_name):
@@ -52,6 +52,14 @@ class Engine(object):
                 return(False)
         elif command in ['i', 'inv', 'inventory']:
             self.player.inventory.list()
+        elif "help" in self.command:
+            print("Use the Cardinal directions to move, such as 'North' and 'West'. If you see an interactable item, pick it up with 'take' and use it with 'use'.")
+            print("Get stuck? See the instructions again with 'help' or 'instructions', Get too stuck? Quit with 'quit'")
+            print("This place doesn't seem to nice, you might want to get out of here...")
+        elif "instructions" in self.command:
+            print("Use the Cardinal directions to move, such as 'North' and 'West'. If you see an interactable item, pick it up with 'take' and use it with 'use'.")
+            print("Get stuck? See the instructions again with 'help' or 'instructions', Get too stuck? Quit with 'quit'")
+            print("This place doesn't seem to nice, you might want to get out of here...")
         else:
             self.parse_fail()
             return(False)
