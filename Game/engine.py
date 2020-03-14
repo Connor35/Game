@@ -85,12 +85,38 @@ class Engine(object):
         self.command = command
         print "You don't see anything like that."
 
-    def parse(self, action):  
+
+    #####
+    # function: check_good_command
+    # author: Connor Whitbey
+    # description: checks if the user-entered command is not empty or contains only spaces
+    ####
+    def check_good_command(self, action):
+        letters = ['a', 'b', 'c', 'd', 'e', 'f',
+                   'g', 'h', 'i', 'j', 'k', 'l',
+                   'm', 'n', 'o', 'p', 'q', 'r',
+                   's', 't', 'u', 'v', 'w', 'x',
+                   'y', 'z']
+
+        for i in xrange(0, len(letters)):
+            if letters[i] in action:
+                return True
+
+        return False
+
+
+    def parse(self, action):
         #breaks commands into categories and then calls an appropriate function
-               
         self.action = action
+
+        good_command = self.check_good_command(action)
+        if (good_command != True):
+            self.parse_fail()
+            return
+
         self.split_command = self.action.split()
         #splits the input into a list of individual words
+
         self.first_word = self.split_command[0]
         #pulls out the first word, then checks to see if it's in a recognizable category
         #then calls the appropriate function
