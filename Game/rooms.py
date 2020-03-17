@@ -74,17 +74,17 @@ class Room(object):
                 self.exits[exit.label] = exit
     
     
-def create_room(config):
+def generate_room_for_game(config):
     new_room = Room()
     new_room.setup(config)
     return(new_room)
     
-def populate():
+def connect_all_rooms():
     all_rooms = {}
     f = open("data/rooms.csv", "rb")
     reader = csv.DictReader(f)
     
     for config in reader:
-        new_room = create_room(config)
+        new_room = generate_room_for_game(config)
         all_rooms[new_room.label] = new_room
     return(all_rooms)
